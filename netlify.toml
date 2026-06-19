@@ -1,0 +1,40 @@
+# ============================================================
+#  JM House of Fashion — Netlify configuration
+#  Domain: jm-house-of-fashion.com
+# ============================================================
+
+[build]
+  # App is a single static HTML file in the repo root
+  publish = "."
+  command = ""
+
+# ----- SPA routing -----
+# Serve index.html for every path so the in-app navigation,
+# phone back-button, and deep links all work without 404s.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ----- Security headers (all pages) -----
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(self), clipboard-write=(self)"
+
+# ----- Never cache the app shell -----
+# Guarantees users always load the newest version after a deploy
+# instead of a stale copy held by the browser.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ----- Cache static assets aggressively (if you add any) -----
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
