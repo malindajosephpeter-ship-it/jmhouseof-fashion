@@ -609,6 +609,8 @@ function load(){
   if(!DB.purchaseOrders) DB.purchaseOrders = [];
   if(!DB.chat) DB.chat = [];
   if(!DB.counters.po) DB.counters.po = 2001;
+  // hakikisha button ya Instagram inaonekana hata kwa data za zamani
+  if(!DB.settings.instagram) DB.settings.instagram = 'jmhouseoffashion';
 }
 function save(){ try { localStorage.setItem(DB_KEY, JSON.stringify(DB)); } catch(e){ toast('Hifadhi imeshindikana','err'); } }
 function audit(action, detail){
@@ -786,7 +788,7 @@ function renderApp(){
           <div class="crumb">JM House of Fashion • ${DB.settings.location}</div>
         </div>
         <div class="tb-actions">
-          ${DB.settings.instagram?`<button class="icon-btn ig-btn" id="igBtn" title="Instagram ya duka">${I.ig}</button>`:''}
+          <button class="icon-btn ig-btn" id="igBtn" title="Instagram ya duka">${I.ig}</button>
           ${totalUnread()?`<button class="icon-btn chat-blink" id="chatQuick" title="Ujumbe mpya wa wafanyakazi">${I.chat}<span class="dot"></span></button>`:''}
           <button class="icon-btn" id="themeBtn" title="Badilisha mwonekano">${DB.settings.theme==='dark'?I.sun:I.moon}</button>
           <button class="icon-btn" id="notifBtn" title="Taarifa">${I.bell}${notifCount()?'<span class="dot"></span>':''}</button>
@@ -804,7 +806,7 @@ function renderApp(){
   document.getElementById('menuBtn').onclick = () => { STATE.sidebarOpen=!STATE.sidebarOpen; renderApp(); };
   document.getElementById('notifBtn').onclick = showNotifications;
   const cq=document.getElementById('chatQuick'); if(cq) cq.onclick=()=>{ navTo('staffchat'); };
-  const ib=document.getElementById('igBtn'); if(ib) ib.onclick=()=>window.open('https://instagram.com/'+DB.settings.instagram,'_blank');
+  const ib=document.getElementById('igBtn'); if(ib) ib.onclick=()=>window.open('https://instagram.com/'+(DB.settings.instagram||'jmhouseoffashion'),'_blank');
   const back = document.getElementById('sbBack'); if(back) back.onclick = ()=>{ STATE.sidebarOpen=false; renderApp(); };
 
   routeRender();
