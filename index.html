@@ -464,6 +464,30 @@ textarea.inp { resize:vertical; min-height:70px; }
   .report-hero { background:#3f1a6b !important; color:#fff !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 }
 </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  .instagram-icon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #E4405F;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: 28px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.instagram-icon:hover {
+    background: #C13584;
+    transform: scale(1.1);
+}
 </head>
 <body data-theme="dark">
 <!-- ===== NETLIFY FORMS (static, detected at deploy on jm-house-of-fashion.com) =====
@@ -2561,5 +2585,8 @@ if('serviceWorker' in navigator){
   try{ const blob=new Blob([sw],{type:'text/javascript'}); navigator.serviceWorker.register(URL.createObjectURL(blob)).catch(()=>{}); }catch(e){}
 }
 </script>
+  <a href="https://www.instagram.com/jm-house-of-fashion/" target="_blank" class="instagram-icon" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+</a>
 </body>
 </html>
